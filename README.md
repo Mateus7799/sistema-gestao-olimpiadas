@@ -28,20 +28,29 @@ Este projeto apresenta a modelagem UML para o Sistema de Gestão das Olimpíadas
 
 ## 📊 Diagramas (Imagens)
 
-### Diagrama de Casos de Uso
-![Casos de Uso](imagens/diagrama-de-caso-de-uso.png)
+ ### Diagrama de Casos de Uso
+
+![Casos de Uso](Diagramas/Diagrma-Casos-de-Uso.png)
+
 
 ### Diagrama de Classes
-![Classes](imagens/diagrama-de-classes.png)
+
+![Classes](Diagramas/Diagrama-de-Classes.png)
+
 
 ### Diagrama de Pacotes
-![Pacotes](imagens/diagrama-de-pacotes.png)
 
-### Diagrama de Componentes
-![Componentes](imagens/diagrama-de-componentes.png)
+![Pacotes](Diagramas/Diagrama-de-Pacotes.png)
+
+
+### Diagrama de Coponentes
+
+![Componentes](Diagramas/Diagrama-de-Componentes.png)
+
 
 ### Diagrama de Implantação
-![Implantação](imagens/diagrama-de-implantação.png)
+
+![Implantação](Diagramas/Diagrama-de-Implantação.png) 
 
 ---
 
