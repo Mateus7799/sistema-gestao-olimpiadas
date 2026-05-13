@@ -59,7 +59,7 @@ Este projeto apresenta a modelagem UML para o Sistema de Gestão das Olimpíadas
 Você pode acessar os códigos-fonte originais nos links abaixo:
 
 * [📄 Código: Caso de Uso](Plantuml/Casos-de-uso.puml)
-* [📄 Código: Classes](Plantuml/Classes.puml))
+* [📄 Código: Classes](Plantuml/Classes.puml)
 * [📄 Código: Pacotes](Plantuml/Pacotes.puml)
 * [📄 Código: Componentes](Plantuml/Componentes.puml)
 * [📄 Código: Implantação](Plantuml/Implementação.puml)
