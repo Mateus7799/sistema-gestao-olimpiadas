@@ -1,0 +1,67 @@
+@startuml
+left to right direction
+skinparam componentStyle rectangle
+
+' Estilização
+skinparam package {
+    BackgroundColor WhiteSmoke
+    BorderColor #333333
+}
+
+actor "Usuário/Administrador" as User
+
+package "Apresentação" {
+    component [Interface de Usuário] as UI
+}
+
+package "Subsistema SGO" {
+    
+    ' Portas (Cubinhos)
+    component [ ] as Port_In #black
+    component [ ] as Port_Out #black
+    
+    ' Nome mais técnico conforme sugestão
+    () "API REST SGO" as I_API
+    
+    component [API Backend] as API
+    
+    ' Módulos internos
+    component [Módulo de Inscrições] as MOD_INS
+    component [Módulo de Alocação] as MOD_ALOC
+    component [Módulo de Resultados] as MOD_RES
+    component [Módulo de Relatórios] as MOD_REL
+}
+
+package "Camada de Dados" {
+    component [ ] as Port_Data #black
+    component [Camada de Persistência] as PERSIST
+    database "Banco de Dados" as DB
+}
+
+' --- CONEXÕES REFINADAS ---
+
+User --> UI
+UI --( I_API
+I_API -- Port_In
+Port_In -- API
+
+' A API agora foca no fluxo de entrada de dados principal
+API --> MOD_INS : solicita inscrição
+API --> MOD_ALOC : define locais
+API --> MOD_RES : registra placar
+
+' Refinamento 1 e 4: Dependência lógica (Relatório precisa de Resultado)
+MOD_RES --> MOD_REL : fornece dados
+
+' Refinamento 2: Persistência com descrição semântica
+MOD_INS --> Port_Out : salva atletas
+MOD_ALOC --> Port_Out : reserva locais
+MOD_RES --> Port_Out : grava resultados
+MOD_REL --> Port_Out : consulta medalhas
+
+' Conexão final com a base
+Port_Out -- Port_Data
+Port_Data -- PERSIST
+PERSIST -- DB
+
+@enduml
