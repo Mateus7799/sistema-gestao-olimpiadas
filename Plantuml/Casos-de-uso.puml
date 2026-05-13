@@ -1,0 +1,61 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+
+' Atores
+
+    actor "Administrador" as Admin
+    actor "Organizador" as Org
+    actor "Atleta" as Atleta
+
+
+rectangle "Sistema de Gestão das Olimpíadas (SGO)" {
+
+    ' Casos principais
+    (Cadastrar Competição) as UC1
+    (Inscrever Atleta) as UC2
+    (Alocar Local) as UC3
+    (Registrar Resultados) as UC4
+    (Gerar Relatório de Medalhas) as UC5
+
+    ' Includes
+    (Validar Dados da Competição) as UC1_1
+    (Validar Inscrição do Atleta) as UC2_1
+    (Verificar País por Modalidade) as UC2_2
+    (Verificar Conflito de Horário) as UC3_1
+    (Atualizar Ranking de Medalhas) as UC4_1
+
+    ' Extends
+    (Editar Competição) as UC1_2
+    (Cancelar Competição) as UC1_3
+    (Cancelar Inscrição) as UC2_3
+    (Reagendar Competição) as UC3_2
+    (Corrigir Resultado) as UC4_2
+
+    ' Ligações atores → casos principais
+    Admin --> UC1
+    Admin --> UC3
+    Admin --> UC5
+
+    Org --> UC1
+    Org --> UC3
+    Org --> UC4
+
+    Atleta --> UC2
+
+    ' Includes (organizados lateralmente)
+    UC1 .right.> UC1_1 : <<include>>
+    UC2 ..> UC2_1 : <<include>>
+    UC2 .right.> UC2_2 : <<include>>
+    UC3 .right.> UC3_1 : <<include>>
+    UC4 .right.> UC4_1 : <<include>>
+
+    ' Extends (organizados acima)
+    UC1_2 .up.> UC1 : <<extend>>
+    UC1_3 .up.> UC1 : <<extend>>
+    UC2_3 .up.> UC2 : <<extend>>
+    UC3_2 .up.> UC3 : <<extend>>
+    UC4_2 .up.> UC4 : <<extend>>
+}
+
+@enduml
