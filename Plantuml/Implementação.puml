@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam nodeStyle rectangle
+
+' DISPOSITIVO DO USUÁRIO
+node "Dispositivo do Usuário\n(Navegador / App)" {
+    component "Interface de Usuário" as UI
+}
+
+' SERVIDOR WEB
+node "Servidor Web" {
+    component "Frontend (Web App)" as FRONT
+}
+
+' SERVIDOR DE APLICAÇÃO
+node "Servidor de Aplicação" {
+
+    component "API Backend" as API
+
+    component "Módulo de Inscrições" as MOD_INS
+    component "Módulo de Alocação" as MOD_ALOC
+    component "Módulo de Resultados" as MOD_RES
+    component "Módulo de Relatórios" as MOD_REL
+}
+
+' SERVIDOR DE BANCO
+node "Servidor de Banco de Dados" {
+    database "Banco de Dados" as DB
+}
+
+' CONEXÕES
+
+UI --> FRONT : HTTP/HTTPS
+
+FRONT --> API : REST
+
+API --> MOD_INS
+API --> MOD_ALOC
+API --> MOD_RES
+API --> MOD_REL
+
+MOD_INS --> DB : JDBC/SQL
+MOD_ALOC --> DB : JDBC/SQL
+MOD_RES --> DB : JDBC/SQL
+MOD_REL --> DB : consultas
+
+@enduml
