@@ -1,0 +1,62 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+' Camada de Interface
+
+package "Interface (Web/App)" {
+    class TelaCompeticoes
+    class TelaInscricoes
+    class TelaResultados
+}
+
+' Camada de API
+
+package "API (Controladores)" {
+    class CompeticaoController
+    class InscricaoController
+    class ResultadoController
+}
+
+' Camada de Serviços 
+
+package "Serviços" {
+    class CompeticaoService
+    class InscricaoService
+    class ResultadoService
+}
+
+
+' Camada de Modelo 
+
+package "Domínio" {
+    class Competicao
+    class Modalidade
+    class Atleta
+    class Pais
+    class Inscricao
+    class Resultado
+    class Medalha
+    class Local
+}
+
+
+' Camada de Persistência
+
+package "Persistência" {
+    class CompeticaoRepository
+    class AtletaRepository
+    class ResultadoRepository
+    class InscricaoRepository
+    class BancoDeDados
+}
+
+' Dependências entre camadas
+
+"Interface (Web/App)" ..> "API (Controladores)"
+"API (Controladores)" ..> "Serviços"
+"Serviços" ..> "Persistência"
+"Serviços" ..> "Domínio"
+"Persistência" .up.> "Domínio"
+
+@enduml
